@@ -36,6 +36,4 @@ cli/
 web/
 AGENT_FLOW.md
 CHANGELOG.md
-package.json
-package-lock.json
 .github/

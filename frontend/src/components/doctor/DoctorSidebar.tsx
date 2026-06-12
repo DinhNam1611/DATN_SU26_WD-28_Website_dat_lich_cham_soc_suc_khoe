@@ -1,20 +1,17 @@
 import { NavLink } from 'react-router-dom'
-import { adminMenu } from '@/routes/adminMenu'
-import Icon from './icons'
+import { doctorMenu } from '@/routes/doctorMenu'
+import Icon from '@/components/admin/icons'
 
 interface Props {
   open: boolean
   onClose: () => void
 }
 
-export default function Sidebar({ open, onClose }: Props) {
+export default function DoctorSidebar({ open, onClose }: Props) {
   return (
     <>
       {open && (
-        <div
-          className="fixed inset-0 z-20 bg-black/40 lg:hidden"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 z-20 bg-black/40 lg:hidden" onClick={onClose} />
       )}
 
       <aside
@@ -31,19 +28,16 @@ export default function Sidebar({ open, onClose }: Props) {
           </div>
           <div>
             <p className="text-sm font-bold leading-tight text-slate-800">VitaFamily</p>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Admin Panel</p>
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-brand-500">Doctor Panel</p>
           </div>
         </div>
 
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto px-3 py-4">
-          {adminMenu.map((item, idx) => {
+          {doctorMenu.map((item, idx) => {
             if (item.type === 'section') {
               return (
-                <p
-                  key={idx}
-                  className="mb-1 mt-5 px-3 text-[10px] font-semibold uppercase tracking-widest text-slate-400 first:mt-0"
-                >
+                <p key={idx} className="mb-1 mt-5 px-3 text-[10px] font-semibold uppercase tracking-widest text-slate-400 first:mt-0">
                   {item.label}
                 </p>
               )
@@ -71,7 +65,7 @@ export default function Sidebar({ open, onClose }: Props) {
 
         {/* Footer */}
         <div className="shrink-0 border-t border-slate-100 px-4 py-3">
-          <p className="text-[10px] text-slate-400">VitaFamily v1.0 · DATN SU26 WD-28</p>
+          <p className="text-[10px] text-slate-400">VitaFamily v1.0 · Cổng bác sĩ</p>
         </div>
       </aside>
     </>

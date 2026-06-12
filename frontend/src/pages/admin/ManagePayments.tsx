@@ -50,33 +50,42 @@ export default function ManagePayments() {
       />
 
       {/* Thẻ thống kê tài chính */}
-      <div className="mb-4 grid gap-3 sm:grid-cols-3">
-        <div className="card flex items-center gap-4 p-4">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-green-500 text-white">
-            <Icon name="trending" className="h-5 w-5" />
+      <div className="mb-5 grid gap-4 sm:grid-cols-3">
+        <div className="card p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-500">Doanh thu (hiển thị)</p>
+              <p className="mt-1.5 text-xl font-bold text-slate-800">{formatPrice(revenue.total)}</p>
+            </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-100">
+              <Icon name="trending" className="h-6 w-6 text-green-600" />
+            </div>
           </div>
-          <div>
-            <p className="text-lg font-bold text-slate-800">{formatPrice(revenue.total)}</p>
-            <p className="text-xs text-slate-500">Đã thu (hiển thị)</p>
-          </div>
+          <p className="mt-3 text-xs text-green-600">↑ từ các giao dịch thành công</p>
         </div>
-        <div className="card flex items-center gap-4 p-4">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-yellow-500 text-white">
-            <Icon name="clock" className="h-5 w-5" />
+        <div className="card p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-500">Chờ thanh toán</p>
+              <p className="mt-1.5 text-2xl font-bold text-slate-800">{revenue.unpaid}</p>
+            </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-yellow-100">
+              <Icon name="clock" className="h-6 w-6 text-yellow-600" />
+            </div>
           </div>
-          <div>
-            <p className="text-xl font-bold text-slate-800">{revenue.unpaid}</p>
-            <p className="text-xs text-slate-500">Chờ thanh toán</p>
-          </div>
+          <p className="mt-3 text-xs text-slate-500">giao dịch cần xử lý</p>
         </div>
-        <div className="card flex items-center gap-4 p-4">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-slate-500 text-white">
-            <Icon name="payment" className="h-5 w-5" />
+        <div className="card p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-500">Đã hoàn trả</p>
+              <p className="mt-1.5 text-xl font-bold text-slate-800">{formatPrice(revenue.refunded)}</p>
+            </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100">
+              <Icon name="payment" className="h-6 w-6 text-slate-600" />
+            </div>
           </div>
-          <div>
-            <p className="text-lg font-bold text-slate-800">{formatPrice(revenue.refunded)}</p>
-            <p className="text-xs text-slate-500">Đã hoàn trả</p>
-          </div>
+          <p className="mt-3 text-xs text-slate-500">tổng tiền hoàn trả</p>
         </div>
       </div>
 
@@ -139,9 +148,9 @@ export default function ManagePayments() {
                     {p.status === 'paid' && (
                       <button
                         onClick={() => setConfirm(p)}
-                        className="text-sm font-medium text-orange-600 hover:underline"
+                        className="inline-flex items-center gap-1 rounded-lg border border-orange-200 bg-orange-50 px-2.5 py-1 text-xs font-semibold text-orange-600 transition-colors hover:bg-orange-100"
                       >
-                        Hoàn tiền
+                        <Icon name="payment" className="h-3 w-3" /> Hoàn tiền
                       </button>
                     )}
                   </td>

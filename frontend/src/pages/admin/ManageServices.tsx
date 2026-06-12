@@ -10,9 +10,9 @@ import Icon from '@/components/admin/icons'
 
 const TYPE_TABS: { value: ServiceType | ''; label: string }[] = [
   { value: '', label: 'Tất cả' },
-  { value: 'clinic', label: '🏥 Phòng khám' },
-  { value: 'video', label: '📹 Video' },
-  { value: 'home', label: '🏠 Tại nhà' },
+  { value: 'clinic', label: 'Phòng khám' },
+  { value: 'video', label: 'Video' },
+  { value: 'home', label: 'Tại nhà' },
 ]
 
 const TYPE_COLOR: Record<ServiceType, 'blue' | 'green' | 'yellow'> = {
@@ -100,13 +100,15 @@ export default function ManageServices() {
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => setConfirm(s)}
-                      className={`flex items-center gap-1 text-sm font-medium ml-auto ${
-                        s.status === 'active' ? 'text-slate-500 hover:text-red-600' : 'text-brand-600 hover:underline'
+                      className={`inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                        s.status === 'active'
+                          ? 'border-slate-200 bg-slate-50 text-slate-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600'
+                          : 'border-brand-200 bg-brand-50 text-brand-600 hover:bg-brand-100'
                       }`}
                     >
                       {s.status === 'active'
-                        ? <><Icon name="eye-off" className="h-4 w-4" /> Ẩn</>
-                        : <><Icon name="eye" className="h-4 w-4" /> Hiện</>}
+                        ? <><Icon name="eye-off" className="h-3 w-3" /> Ẩn</>
+                        : <><Icon name="eye" className="h-3 w-3" /> Hiện</>}
                     </button>
                   </td>
                 </tr>

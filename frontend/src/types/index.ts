@@ -193,3 +193,73 @@ export interface ApiResponse<T = unknown> {
   message: string
   data: T
 }
+
+// ─── Doctor Panel types (B1–B5) ───────────────────────────────
+
+export interface DoctorSlot {
+  id: number
+  ngay: string           // 'YYYY-MM-DD'
+  gio_bat_dau: string    // 'HH:MM'
+  gio_ket_thuc: string
+  so_benh_nhan_toi_da: number
+  so_benh_nhan_hien_tai: number
+  status: 'active' | 'locked' | 'cancelled'
+}
+
+export interface DoctorAppointmentDetail {
+  id: number
+  benh_nhan: string
+  benh_nhan_id: number
+  so_dien_thoai: string
+  ngay_kham: string
+  gio_kham: string
+  loai_kham: 'clinic' | 'home' | 'video'
+  status: AppointmentStatus
+  payment_status: PaymentStatus
+  gia_kham: number
+  ly_do_kham?: string
+  tuoi?: number
+  gioi_tinh?: 'Nam' | 'Nữ' | 'Khác'
+  di_ung?: string | null
+  benh_nen?: string | null
+  da_co_ket_qua: boolean
+  ly_do_huy?: string | null
+}
+
+export interface PrescriptionDrug {
+  id: number
+  ten_thuoc: string
+  lieu_dung: string
+  tan_suat: string   // '3 lần/ngày'
+  so_ngay: number
+  ghi_chu: string
+}
+
+export interface ExaminationResult {
+  id: number
+  appointment_id: number
+  chan_doan: string
+  huong_dan_dieu_tri: string
+  ngay_tai_kham: string
+  co_the_sua: boolean
+  thuoc: PrescriptionDrug[]
+  ngay_tao: string
+}
+
+export interface DoctorStats {
+  tong_luot_kham: number
+  thang_nay: number
+  ty_le_hoan_thanh: number
+  ty_le_huy: number
+  diem_danh_gia: number
+  so_danh_gia: number
+  doanh_thu_thang: number
+}
+
+export interface DoctorReview {
+  id: number
+  benh_nhan: string
+  diem: number
+  noi_dung: string
+  ngay_tao: string
+}

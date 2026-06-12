@@ -133,8 +133,13 @@ export default function ManageUsers() {
               ) : (
                 users.map((u) => (
                   <tr key={u.id} className="hover:bg-slate-50">
-                    <td className="px-4 py-3 font-medium text-slate-800">
-                      {u.ho_ten}
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
+                          {u.ho_ten.charAt(0).toUpperCase()}
+                        </div>
+                        <span className="font-medium text-slate-800">{u.ho_ten}</span>
+                      </div>
                     </td>
                     <td className="px-4 py-3 text-slate-600">{u.email}</td>
                     <td className="px-4 py-3 text-slate-600">
@@ -154,17 +159,18 @@ export default function ManageUsers() {
                       {formatDate(u.ngay_tao)}
                     </td>
                     <td className="px-4 py-3 text-right">
-                      {/* Không cho khóa tài khoản admin */}
                       {u.role !== 'admin' && (
                         <button
                           onClick={() => setConfirmUser(u)}
-                          className={
+                          className={`inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
                             u.status === 'active'
-                              ? 'text-sm font-medium text-red-600 hover:underline'
-                              : 'text-sm font-medium text-brand-600 hover:underline'
-                          }
+                              ? 'border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
+                              : 'border-brand-200 bg-brand-50 text-brand-600 hover:bg-brand-100'
+                          }`}
                         >
-                          {u.status === 'active' ? 'Khóa' : 'Mở khóa'}
+                          {u.status === 'active'
+                            ? <><Icon name="ban" className="h-3 w-3" /> Khóa</>
+                            : <><Icon name="check" className="h-3 w-3" /> Mở khóa</>}
                         </button>
                       )}
                     </td>

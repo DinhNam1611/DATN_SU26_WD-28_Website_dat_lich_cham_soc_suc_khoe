@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import AdminLayout from '@/layouts/AdminLayout'
+import DoctorLayout from '@/layouts/DoctorLayout'
 import AuthLayout from '@/layouts/AuthLayout'
 import ClientLayout from '@/layouts/ClientLayout'
 import ProtectedRoute from '@/routes/ProtectedRoute'
@@ -18,6 +19,11 @@ import ManageAppointments from '@/pages/admin/ManageAppointments'
 import ManageReviews from '@/pages/admin/ManageReviews'
 import ManageNotifications from '@/pages/admin/ManageNotifications'
 import ManagePayments from '@/pages/admin/ManagePayments'
+
+import DoctorDashboard from '@/pages/doctor/DoctorDashboard'
+import DoctorProfile from '@/pages/doctor/DoctorProfile'
+import DoctorSchedule from '@/pages/doctor/DoctorSchedule'
+import DoctorAppointments from '@/pages/doctor/DoctorAppointments'
 
 import NotFound from '@/pages/NotFound'
 
@@ -53,6 +59,21 @@ export default function AppRoutes() {
         <Route path="reviews" element={<ManageReviews />} />       {/* C6 */}
         <Route path="notifications" element={<ManageNotifications />} /> {/* C7 */}
         <Route path="payments" element={<ManagePayments />} />     {/* C8 */}
+      </Route>
+
+      {/* Khu vực Doctor — yêu cầu role = doctor */}
+      <Route
+        path="/doctor"
+        element={
+          <ProtectedRoute roles={['doctor']}>
+            <DoctorLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<DoctorDashboard />} />                  {/* B5 */}
+        <Route path="appointments" element={<DoctorAppointments />} /> {/* B3+B4 */}
+        <Route path="schedule" element={<DoctorSchedule />} />         {/* B2 */}
+        <Route path="profile" element={<DoctorProfile />} />           {/* B1 */}
       </Route>
 
       <Route path="/404" element={<NotFound />} />

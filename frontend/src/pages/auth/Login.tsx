@@ -34,27 +34,33 @@ export default function Login() {
   }
 
   return (
-    <div className="card p-6">
-      <h2 className="mb-1 text-xl font-bold text-slate-800">Đăng nhập</h2>
-      <p className="mb-5 text-sm text-slate-500">
-        Đăng nhập để vào hệ thống VitaFamily.
-      </p>
+    <>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-slate-800">Chào mừng trở lại</h1>
+        <p className="mt-1 text-sm text-slate-500">Đăng nhập để vào hệ thống VitaFamily.</p>
+      </div>
 
       {registered && (
-        <div className="mb-4 rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
+        <div className="mb-5 flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
           Đăng ký thành công! Vui lòng đăng nhập.
         </div>
       )}
 
       {error && (
-        <div className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">
+        <div className="mb-5 flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+          <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Email</label>
+          <label className="input-label">Email</label>
           <input
             type="email"
             className="input"
@@ -65,35 +71,52 @@ export default function Login() {
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Mật khẩu</label>
+          <div className="mb-1 flex items-center justify-between">
+            <label className="text-sm font-medium text-slate-700">Mật khẩu</label>
+            <a href="#" className="text-xs text-brand-600 hover:underline">Quên mật khẩu?</a>
+          </div>
           <input
             type="password"
             className="input"
-            placeholder="••••••"
+            placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className="btn-primary w-full" disabled={loading}>
-          {loading ? 'Đang xử lý...' : 'Đăng nhập'}
+        <button type="submit" className="btn-primary w-full py-2.5 text-base" disabled={loading}>
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="spinner h-4 w-4" />
+              Đang xử lý...
+            </span>
+          ) : 'Đăng nhập'}
         </button>
       </form>
 
-      <p className="mt-4 text-center text-sm text-slate-500">
+      <p className="mt-6 text-center text-sm text-slate-500">
         Chưa có tài khoản?{' '}
-        <Link to="/register" className="font-medium text-brand-600 hover:underline">
+        <Link to="/register" className="font-semibold text-brand-600 hover:underline">
           Đăng ký ngay
         </Link>
       </p>
 
-      {/* Gợi ý tài khoản demo trong giai đoạn làm giao diện */}
-      <div className="mt-5 rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
-        <p className="font-medium text-slate-600">Tài khoản demo:</p>
-        <p>admin@vitafamily.vn / 123456 (Admin)</p>
-        <p>doctor@vitafamily.vn / 123456 (Bác sĩ)</p>
-        <p>user@vitafamily.vn / 123456 (Bệnh nhân)</p>
+      {/* Demo accounts */}
+      <div className="mt-6 rounded-xl border border-brand-100 bg-brand-50 p-4">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand-700">Tài khoản demo</p>
+        <div className="space-y-1.5 text-xs">
+          {[
+            { role: 'Admin', email: 'admin@vitafamily.vn' },
+            { role: 'Bác sĩ', email: 'doctor@vitafamily.vn' },
+            { role: 'Bệnh nhân', email: 'user@vitafamily.vn' },
+          ].map(({ role, email }) => (
+            <div key={role} className="flex items-center justify-between">
+              <span className="font-medium text-brand-800">{role}</span>
+              <span className="font-mono text-slate-500">{email} / 123456</span>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

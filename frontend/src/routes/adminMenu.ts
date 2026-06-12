@@ -1,15 +1,17 @@
-// Cấu hình menu Admin — DÙNG CHUNG cho Sidebar và khai báo Route.
-// Thêm/bớt trang Admin chỉ cần sửa danh sách này (và tạo component tương ứng).
-// 8 mục khớp 8 chức năng Admin (C1–C8) trong đặc tả.
+export type AdminMenuItem =
+  | { type: 'item'; path: string; label: string; icon: string; end?: boolean }
+  | { type: 'section'; label: string }
 
-export const adminMenu = [
-  { path: '/admin', label: 'Tổng quan', icon: 'dashboard', end: true },
-  { path: '/admin/users', label: 'Quản lý người dùng', icon: 'users' }, // C1
-  { path: '/admin/doctors', label: 'Duyệt hồ sơ bác sĩ', icon: 'doctor' }, // C2
-  { path: '/admin/hospitals', label: 'Bệnh viện & Chuyên khoa', icon: 'hospital' }, // C3
-  { path: '/admin/services', label: 'Quản lý dịch vụ', icon: 'service' }, // C4
-  { path: '/admin/appointments', label: 'Lịch hẹn hệ thống', icon: 'calendar' }, // C5
-  { path: '/admin/reviews', label: 'Đánh giá & phản hồi', icon: 'star' }, // C6
-  { path: '/admin/notifications', label: 'Thông báo hệ thống', icon: 'bell' }, // C7
-  { path: '/admin/payments', label: 'Quản lý thanh toán', icon: 'payment' }, // C8
+export const adminMenu: AdminMenuItem[] = [
+  { type: 'item', path: '/admin', label: 'Tổng quan', icon: 'dashboard', end: true },
+  { type: 'section', label: 'Quản lý' },
+  { type: 'item', path: '/admin/users', label: 'Người dùng', icon: 'users' },
+  { type: 'item', path: '/admin/doctors', label: 'Hồ sơ bác sĩ', icon: 'doctor' },
+  { type: 'item', path: '/admin/hospitals', label: 'Bệnh viện & CK', icon: 'hospital' },
+  { type: 'item', path: '/admin/services', label: 'Dịch vụ', icon: 'service' },
+  { type: 'section', label: 'Hoạt động' },
+  { type: 'item', path: '/admin/appointments', label: 'Lịch hẹn', icon: 'calendar' },
+  { type: 'item', path: '/admin/reviews', label: 'Đánh giá', icon: 'star' },
+  { type: 'item', path: '/admin/notifications', label: 'Thông báo', icon: 'bell' },
+  { type: 'item', path: '/admin/payments', label: 'Thanh toán', icon: 'payment' },
 ]

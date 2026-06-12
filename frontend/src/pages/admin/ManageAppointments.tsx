@@ -36,8 +36,9 @@ export default function ManageAppointments() {
     return () => { ignore = true }
   }, [keyword, status, loaiKham])
 
+  const todayStr = new Date().toISOString().slice(0, 10)
   const counts = {
-    today: appointments.filter((a) => a.ngay_kham === '2026-06-15').length,
+    today: appointments.filter((a) => a.ngay_kham === todayStr).length,
     pending: appointments.filter((a) => a.status === 'pending').length,
     confirmed: appointments.filter((a) => a.status === 'confirmed').length,
     completed: appointments.filter((a) => a.status === 'completed').length,
@@ -59,20 +60,22 @@ export default function ManageAppointments() {
       />
 
       {/* Thẻ thống kê */}
-      <div className="mb-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: 'Hôm nay', value: counts.today, color: 'bg-purple-500', icon: 'calendar' },
-          { label: 'Chờ xác nhận', value: counts.pending, color: 'bg-yellow-500', icon: 'clock' },
-          { label: 'Đã xác nhận', value: counts.confirmed, color: 'bg-blue-500', icon: 'check' },
-          { label: 'Hoàn thành', value: counts.completed, color: 'bg-green-500', icon: 'star' },
+          { label: 'Lịch hẹn hôm nay', value: counts.today, iconBg: 'bg-purple-100', iconColor: 'text-purple-600', icon: 'calendar' },
+          { label: 'Chờ xác nhận', value: counts.pending, iconBg: 'bg-yellow-100', iconColor: 'text-yellow-600', icon: 'clock' },
+          { label: 'Đã xác nhận', value: counts.confirmed, iconBg: 'bg-blue-100', iconColor: 'text-blue-600', icon: 'check' },
+          { label: 'Hoàn thành', value: counts.completed, iconBg: 'bg-green-100', iconColor: 'text-green-600', icon: 'star' },
         ].map((s) => (
-          <div key={s.label} className="card flex items-center gap-3 p-4">
-            <div className={`grid h-10 w-10 place-items-center rounded-xl text-white ${s.color}`}>
-              <Icon name={s.icon} className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xl font-bold text-slate-800">{s.value}</p>
-              <p className="text-xs text-slate-500">{s.label}</p>
+          <div key={s.label} className="card p-5">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <p className="text-sm font-medium text-slate-500">{s.label}</p>
+                <p className="mt-1.5 text-2xl font-bold text-slate-800">{s.value}</p>
+              </div>
+              <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${s.iconBg}`}>
+                <Icon name={s.icon} className={`h-6 w-6 ${s.iconColor}`} />
+              </div>
             </div>
           </div>
         ))}
@@ -156,16 +159,16 @@ export default function ManageAppointments() {
                     <div className="flex justify-end gap-2">
                       <button
                         onClick={() => setDetail(a)}
-                        className="flex items-center gap-1 text-sm text-slate-500 hover:text-brand-600"
+                        className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-100"
                       >
-                        <Icon name="eye" className="h-4 w-4" />
+                        <Icon name="eye" className="h-3 w-3" /> Xem
                       </button>
                       {(a.status === 'pending' || a.status === 'confirmed') && (
                         <button
                           onClick={() => setConfirmItem(a)}
-                          className="flex items-center gap-1 text-sm font-medium text-red-600 hover:underline"
+                          className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-600 transition-colors hover:bg-red-100"
                         >
-                          <Icon name="x" className="h-3.5 w-3.5" /> Hủy
+                          <Icon name="x" className="h-3 w-3" /> Hủy
                         </button>
                       )}
                     </div>

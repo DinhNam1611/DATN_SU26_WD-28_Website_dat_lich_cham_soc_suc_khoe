@@ -61,33 +61,42 @@ export default function ManageReviews() {
       />
 
       {/* Thẻ tổng quan */}
-      <div className="mb-4 grid gap-3 sm:grid-cols-3">
-        <div className="card flex items-center gap-4 p-4">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-amber-500 text-white">
-            <Icon name="star" className="h-5 w-5" />
+      <div className="mb-5 grid gap-4 sm:grid-cols-3">
+        <div className="card p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-500">Điểm trung bình</p>
+              <p className="mt-1.5 text-2xl font-bold text-slate-800">{counts.avg}</p>
+            </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100">
+              <Icon name="star" className="h-6 w-6 text-amber-600" />
+            </div>
           </div>
-          <div>
-            <p className="text-xl font-bold text-slate-800">{counts.avg}</p>
-            <p className="text-xs text-slate-500">Điểm trung bình</p>
-          </div>
+          <p className="mt-3 text-xs text-slate-500">trên thang điểm 5</p>
         </div>
-        <div className="card flex items-center gap-4 p-4">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-blue-500 text-white">
-            <Icon name="file-text" className="h-5 w-5" />
+        <div className="card p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-500">Tổng đánh giá</p>
+              <p className="mt-1.5 text-2xl font-bold text-slate-800">{counts.total}</p>
+            </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-100">
+              <Icon name="file-text" className="h-6 w-6 text-blue-600" />
+            </div>
           </div>
-          <div>
-            <p className="text-xl font-bold text-slate-800">{counts.total}</p>
-            <p className="text-xs text-slate-500">Tổng đánh giá</p>
-          </div>
+          <p className="mt-3 text-xs text-slate-500">từ bệnh nhân</p>
         </div>
-        <div className="card flex items-center gap-4 p-4">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-red-500 text-white">
-            <Icon name="alert-circle" className="h-5 w-5" />
+        <div className="card p-5">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-slate-500">Đánh giá 1–2 sao</p>
+              <p className="mt-1.5 text-2xl font-bold text-slate-800">{counts.low}</p>
+            </div>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-100">
+              <Icon name="alert-circle" className="h-6 w-6 text-red-600" />
+            </div>
           </div>
-          <div>
-            <p className="text-xl font-bold text-slate-800">{counts.low}</p>
-            <p className="text-xs text-slate-500">Đánh giá 1–2 sao</p>
-          </div>
+          <p className="mt-3 text-xs text-red-500">cần xem xét</p>
         </div>
       </div>
 
@@ -151,13 +160,15 @@ export default function ManageReviews() {
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => setConfirm(r)}
-                      className={`flex items-center gap-1 text-sm font-medium ml-auto ${
-                        r.status === 'visible' ? 'text-slate-500 hover:text-red-600' : 'text-brand-600 hover:underline'
+                      className={`inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                        r.status === 'visible'
+                          ? 'border-slate-200 bg-slate-50 text-slate-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600'
+                          : 'border-brand-200 bg-brand-50 text-brand-600 hover:bg-brand-100'
                       }`}
                     >
                       {r.status === 'visible'
-                        ? <><Icon name="eye-off" className="h-4 w-4" /> Ẩn</>
-                        : <><Icon name="eye" className="h-4 w-4" /> Hiện</>}
+                        ? <><Icon name="eye-off" className="h-3 w-3" /> Ẩn</>
+                        : <><Icon name="eye" className="h-3 w-3" /> Hiện</>}
                     </button>
                   </td>
                 </tr>

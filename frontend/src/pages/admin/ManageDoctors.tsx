@@ -162,37 +162,37 @@ export default function ManageDoctors() {
                   </td>
                   <td className="px-4 py-3 text-slate-500">{formatDate(doc.ngay_tao)}</td>
                   <td className="px-4 py-3">
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-end gap-1.5">
                       {doc.trang_thai_duyet === 'pending' && (
                         <>
                           <button
                             onClick={() => openAction(doc, 'approve')}
-                            className="flex items-center gap-1 text-sm font-medium text-green-600 hover:underline"
+                            className="inline-flex items-center gap-1 rounded-lg border border-green-200 bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-600 transition-colors hover:bg-green-100"
                           >
-                            <Icon name="check" className="h-3.5 w-3.5" /> Duyệt
+                            <Icon name="check" className="h-3 w-3" /> Duyệt
                           </button>
                           <button
                             onClick={() => openAction(doc, 'reject')}
-                            className="flex items-center gap-1 text-sm font-medium text-red-600 hover:underline"
+                            className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-600 transition-colors hover:bg-red-100"
                           >
-                            <Icon name="x" className="h-3.5 w-3.5" /> Từ chối
+                            <Icon name="x" className="h-3 w-3" /> Từ chối
                           </button>
                         </>
                       )}
                       {doc.trang_thai_duyet === 'approved' && (
                         <button
                           onClick={() => openAction(doc, 'suspend')}
-                          className="flex items-center gap-1 text-sm font-medium text-orange-600 hover:underline"
+                          className="inline-flex items-center gap-1 rounded-lg border border-orange-200 bg-orange-50 px-2.5 py-1 text-xs font-semibold text-orange-600 transition-colors hover:bg-orange-100"
                         >
-                          <Icon name="ban" className="h-3.5 w-3.5" /> Tạm ngưng
+                          <Icon name="ban" className="h-3 w-3" /> Tạm ngưng
                         </button>
                       )}
                       {(doc.trang_thai_duyet === 'suspended' || doc.trang_thai_duyet === 'rejected') && (
                         <button
                           onClick={() => openAction(doc, 'restore')}
-                          className="flex items-center gap-1 text-sm font-medium text-brand-600 hover:underline"
+                          className="inline-flex items-center gap-1 rounded-lg border border-brand-200 bg-brand-50 px-2.5 py-1 text-xs font-semibold text-brand-600 transition-colors hover:bg-brand-100"
                         >
-                          <Icon name="check" className="h-3.5 w-3.5" /> Khôi phục
+                          <Icon name="check" className="h-3 w-3" /> Khôi phục
                         </button>
                       )}
                     </div>

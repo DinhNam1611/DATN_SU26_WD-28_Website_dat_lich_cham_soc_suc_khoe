@@ -4,14 +4,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Màu thương hiệu VitaFamily (tông xanh y tế). Đổi tại đây để áp dụng toàn hệ thống.
         brand: {
-          50: '#eef9f6',
-          100: '#d6f0e9',
-          500: '#10a37f',
-          600: '#0e8c6d',
-          700: '#0b6f56',
+          50:  '#eff4ff',
+          100: '#dce9ff',
+          200: '#b8d3ff',
+          300: '#84b2ff',
+          400: '#6398ff',
+          500: '#4880FF',
+          600: '#3060e8',
+          700: '#2348c8',
+          800: '#1b3aa0',
+          900: '#162d80',
         },
+        surface: '#F5F6FA',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
+      boxShadow: {
+        card: '0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04)',
+        'card-md': '0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05)',
       },
     },
   },

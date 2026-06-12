@@ -106,13 +106,15 @@ export default function ManageHospitals() {
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={() => setConfirmHospital(h)}
-                        className={`flex items-center gap-1 text-sm font-medium ${
-                          h.status === 'active' ? 'text-slate-500 hover:text-red-600' : 'text-brand-600 hover:underline'
-                        } ml-auto`}
+                        className={`inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                          h.status === 'active'
+                            ? 'border-slate-200 bg-slate-50 text-slate-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600'
+                            : 'border-brand-200 bg-brand-50 text-brand-600 hover:bg-brand-100'
+                        }`}
                       >
                         {h.status === 'active'
-                          ? <><Icon name="eye-off" className="h-4 w-4" /> Ẩn</>
-                          : <><Icon name="eye" className="h-4 w-4" /> Hiện</>}
+                          ? <><Icon name="eye-off" className="h-3 w-3" /> Ẩn</>
+                          : <><Icon name="eye" className="h-3 w-3" /> Hiện</>}
                       </button>
                     </td>
                   </tr>
@@ -153,13 +155,15 @@ export default function ManageHospitals() {
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={() => setConfirmSpecialty(s)}
-                        className={`flex items-center gap-1 text-sm font-medium ${
-                          s.status === 'active' ? 'text-slate-500 hover:text-red-600' : 'text-brand-600 hover:underline'
-                        } ml-auto`}
+                        className={`inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                          s.status === 'active'
+                            ? 'border-slate-200 bg-slate-50 text-slate-600 hover:border-red-200 hover:bg-red-50 hover:text-red-600'
+                            : 'border-brand-200 bg-brand-50 text-brand-600 hover:bg-brand-100'
+                        }`}
                       >
                         {s.status === 'active'
-                          ? <><Icon name="eye-off" className="h-4 w-4" /> Ẩn</>
-                          : <><Icon name="eye" className="h-4 w-4" /> Hiện</>}
+                          ? <><Icon name="eye-off" className="h-3 w-3" /> Ẩn</>
+                          : <><Icon name="eye" className="h-3 w-3" /> Hiện</>}
                       </button>
                     </td>
                   </tr>
